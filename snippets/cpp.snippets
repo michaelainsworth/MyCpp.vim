@@ -1,0 +1,173 @@
+snippet i
+	if (${1:true})
+	{
+		${0}
+	}
+
+snippet ie
+	if (${1:true})
+	{
+		${2}
+	}
+	else${0}
+	{
+		${3}
+	}
+
+snippet ei
+	else if (${1:true})
+	{
+		${2}
+	}
+
+snippet elsei
+	else if (${1:true})
+	{
+		${2}
+	}
+	else${0}
+
+	else if (${1:true})
+
+snippet w
+	while (${1:true})
+	{
+		${0}
+	}
+
+snippet fi
+	for (${1:int} ${2:i} = 0; $2 < ${3:size}; ++$2)
+	{
+		${0}
+	}
+
+snippet fa
+	for (auto& ${1:item} : ${2:collection})
+	{
+		$0
+	}
+
+snippet t
+	try
+	{
+		${0}
+	}
+	catch (const ${1:std::exception&} e)
+	{
+		${2:std::cerr << e.what() << std::endl;}
+	}
+
+snippet m
+	#include <iostream>
+	using std::cin;
+	using std::cout;
+	using std::cerr;
+	using std::endl;
+	
+	int main(int argc, const char**argv)
+	{
+		${0}
+		return EXIT_SUCCESS;
+	}
+
+snippet o
+	#ifndef ${1:`toupper(substitute(expand('%:p:t'), '[^a-zA-Z0-9]', '_', 'g'))`}
+	#define $1
+
+	${0}
+
+	#endif // #ifndef $1
+
+snippet c
+	//! \class $1
+	//! \brief ${2:Brief class description}
+	//!
+	//! ${3:Detailed class description}
+	class ${1:`expand('%:p:t:r')`}
+	{
+	public:
+
+		${0}
+
+	};
+
+snippet cn
+	// Constructor
+	${1:`expand('%:p:t:r')`}(${2});
+
+snippet ds
+	// Destructur
+	${2:virtual }~${1:`expand('%:p:t:r')`}()${3};
+
+snippet dcn
+	${1:`expand('%:p:t:r')`}::$1(${2}) :
+		${3:}
+	{
+		${0}
+	}
+
+snippet dds
+	${1:`expand('%:p:t:r')`}::~$1()
+	{
+		${0}
+	}
+
+snippet mfn
+	//! \brief ${4:Brief member function description}
+	//! 
+	//! ${5:Detailed member function description}
+	//! 
+	//! return ${6:Return parameter description}
+	${3:void} ${1:memberFunction}(${2});
+
+snippet dmfn
+	${4:void} ${1:`expand('%:p:t:r')`}::${2:memberFunction}(${3})
+	{
+		${0}
+	}
+
+snippet nocp
+	// Noncopyable
+	${1:`expand('%:p:t:r')`}(const $1& that) = delete;
+	$1($1&& that) = delete;
+	$1& operator =(const $1& that) = delete;
+	$1& operator =($1&& that) = delete;
+	
+snippet cp
+	// Copyable
+	${1:`expand('%:p:t:r')`}(const $1& that);
+	$1($1&& that);
+	$1& operator =(const $1& that);
+	$1& operator =($1&& that);
+	
+snippet dcp
+	${1:`expand('%:p:t:r')`}::$1(const $1& that) :
+		${2:}
+	{
+	}
+
+	$1::$1($1&& that) :
+		$2
+	{
+	}
+
+	$1& $1::operator =(const $1& that)
+	{
+		if (this != &that)
+		{
+			${3:}
+		}
+	}
+	
+	$1& $1::operator =($1&& that)
+	{
+		if (this != &that)
+		{
+			$3
+		}
+	}
+snippet dox
+	//! \brief ${1:Brief description here}
+	//!
+	//! ${2:Detailed description here}
+
