@@ -1,0 +1,61 @@
+snippet <= "Output Value"
+<!-- << ${1:value} << -->
+endsnippet
+
+snippet <i "If Block"
+<!--; if (${1:true}) { out << -->
+	$0
+<!--; } out << -->
+
+endsnippet
+
+snippet <ie "If/Else Block"
+<!--; if (${1:true}) { out << -->
+	$2
+<!--; } else { out << -->
+	$3
+<!--; } out << -->
+
+endsnippet
+
+snippet <w "While Block"
+<!--; while (${1:true}) { out << -->
+	$0
+<!--; } out << -->
+
+endsnippet
+
+snippet <fi "For Block (int)"
+<!--; for (${1:int} ${2:i} = 0; $2 < ${3:size}; ++$2) { out << -->
+	${0}
+<!--; } out << -->
+
+endsnippet
+
+snippet <fa "For Block (auto)"
+<!--; for (auto& ${1:item} : ${2:collection}) { out << -->
+	$0
+<!--; } out << -->
+
+endsnippet
+
+snippet <fn "Declare Member Function"
+<!-- ${4:void} ${1:`expand('%:p:t:r')`}::${2:memberFunction}(${3}) { out << -->
+	$0
+<!--; } out << -->
+
+endsnippet
+
+snippet <h "Header"
+<!--
+#include "${1:`substitute(expand('%:p:t'), '.cpp.html', '.hpp', 'g')`}"
+#include <iostream>
+
+${4:void} ${2:render}()
+{
+	out << 
+-->${0}<!--;
+}
+-->
+endsnippet
+

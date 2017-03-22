@@ -1,0 +1,257 @@
+snippet cout "Write (std::cout)"
+std::cout << ${1:expression} << std::endl;
+endsnippet
+
+snippet clog "Write (std::clog)"
+std::clog << ${1:expression} << std::endl;
+endsnippet
+
+snippet re "Return Statement"
+return ${0};
+endsnippet
+
+snippet i "If Block"
+if (${1:true})
+{
+	${0}
+}
+endsnippet
+
+snippet e "Else Block"
+else
+{
+	${0}
+}
+
+endsnippet
+
+snippet ie "If/Else Block"
+if (${1:true})
+{
+	${2}
+}
+else${0}
+{
+	${3}
+}
+endsnippet
+
+snippet ei "Else/If Block (Single)"
+else if (${1:true})
+{
+	${2}
+}
+
+endsnippet
+
+snippet elsei "Else/If Block (Multiple)"
+else if (${1:true})
+{
+	${2}
+}
+else${0}
+
+else if (${1:true})
+endsnippet
+
+snippet w "While Block"
+while (${1:true})
+{
+	${0}
+}
+endsnippet
+
+snippet fi "For Block (int)"
+for (${1:int} ${2:i} = 0; $2 < ${3:size}; ++$2)
+{
+	${0}
+}
+endsnippet
+
+snippet fa "For Block (auto)"
+for (auto& ${1:item} : ${2:collection})
+{
+	$0
+}
+endsnippet
+
+snippet tr "Try/Catch Block"
+try
+{
+	${0}
+}
+catch (${1:const std::exception& e})
+{
+	${2:std::cerr << e.what() << std::endl;}
+}
+endsnippet
+
+snippet m "main()"
+#include <iostream>
+using std::cin;
+using std::cout;
+using std::cerr;
+using std::endl;
+
+int main(int argc, const char**argv)
+{
+	${0}
+	return EXIT_SUCCESS;
+}
+endsnippet
+
+snippet o "Include Guard"
+#ifndef ${1:`toupper(substitute(expand('%:p:t'), '[^a-zA-Z0-9]', '_', 'g'))`}
+#define $1
+
+${0}
+
+#endif // #ifndef $1
+endsnippet
+
+snippet c "Class"
+//! \class $1
+//! \brief ${2:Brief class description}
+//!
+//! ${3:Detailed class description}
+class ${1:`expand('%:p:t:r')`}
+{
+public:
+
+	${0}
+
+};
+endsnippet
+
+snippet cn "Declare Constructor"
+// Constructor
+${1:`expand('%:p:t:r')`}(${2});
+endsnippet
+
+snippet ds "Declare Destructor"
+// Destructor
+${2:virtual }~${1:`expand('%:p:t:r')`}()${3};
+endsnippet
+
+snippet dcn "Define Constructor"
+${1:`expand('%:p:t:r')`}::$1(${2}) :
+	${3:}
+{
+	${0}
+}
+endsnippet
+
+snippet dds "Define Destructor"
+${1:`expand('%:p:t:r')`}::~$1()
+{
+	${0}
+}
+endsnippet
+
+snippet mfn "Declare Member Function"
+//! \brief ${4:Brief member function description}
+//! 
+//! ${5:Detailed member function description}
+//! 
+//! return ${6:Return parameter description}
+${3:void} ${1:memberFunction}(${2});
+endsnippet
+
+snippet dmfn "Define Member Function"
+${4:void} ${1:`expand('%:p:t:r')`}::${2:memberFunction}(${3:void})
+{
+	${0}
+}
+endsnippet
+
+snippet nocp "Declare Non-Copyable Semantics"
+// Noncopyable
+${1:`expand('%:p:t:r')`}(const $1& that) = delete;
+$1($1&& that) = delete;
+$1& operator =(const $1& that) = delete;
+$1& operator =($1&& that) = delete;
+endsnippet
+
+snippet cp "Declare Copyable Semantics"
+// Copyable
+${1:`expand('%:p:t:r')`}(const $1& that);
+$1($1&& that);
+$1& operator =(const $1& that);
+$1& operator =($1&& that);
+
+endsnippet
+
+snippet dcp "Define Copyable Semantics"
+${1:`expand('%:p:t:r')`}::$1(const $1& that) :
+	${2:}
+{
+}
+
+$1::$1($1&& that) :
+	$2
+{
+}
+
+$1& $1::operator =(const $1& that)
+{
+	if (this != &that)
+	{
+		${3:}
+	}
+}
+
+$1& $1::operator =($1&& that)
+{
+	if (this != &that)
+	{
+		$3
+	}
+}
+endsnippet
+
+snippet dox "Doxygen Comment Block"
+//! \brief ${1:Brief description here}
+//!
+//! ${2:Detailed description here}
+endsnippet
+
+snippet tod "TODO"
+//! \todo ${1:Brief description here}
+//!
+//! ${2:Longer description here}
+endsnippet
+
+snippet bats "BOOST_AUTO_TEST_SUITE"
+BOOST_AUTO_TEST_SUITE(${1:name})
+
+$0
+
+BOOST_AUTO_TEST_SUITE_END()
+endsnippet
+
+snippet bfts "BOOST_FIXTURE_TEST_SUITE"
+BOOST_FIXTURE_TEST_SUITE(${1:name}, ${2:fixture})
+
+$0
+
+BOOST_AUTO_TEST_SUITE_END()
+endsnippet
+
+snippet batc "BOOST_AUTO_TEST_CASE"
+BOOST_AUTO_TEST_CASE(${1:name})
+{
+	${0}
+}
+endsnippet
+
+snippet b "BOOST_CHECK"
+BOOST_${1:REQUIRE}(${2:expression});
+endsnippet
+
+snippet bnt "BOOST_CHECK_NO_THROW"
+BOOST_${1:REQUIRE}_NO_THROW(${2:expression});
+endsnippet
+
+snippet bt "BOOST_CHECK_THROW"
+BOOST_${1:REQUIRE}_THROW(${2:expression}, ${3:std::exception});
+endsnippet
