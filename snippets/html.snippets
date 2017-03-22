@@ -19,7 +19,7 @@ snippet <w
 
 snippet <fi
 	<!--; for (${1:int} ${2:i} = 0; $2 < ${3:size}; ++$2) { std::cout << -->
-		$0
+		${0}
 	<!--; } std::cout << -->
 
 snippet <fa
@@ -34,8 +34,12 @@ snippet <fn
 
 snippet <h
 	<!--
-	#include <${1:`expand('%:p:t:r') . '.hpp'`}>
+	#include "${1:`substitute(expand('%:p:t'), '.cpp.html', '.hpp', 'g')`}"
 	#include <iostream>
 
+	${4:void} ${2:render}()
+	{
+		std::cout << 
+	-->${0}<!--;
+	}
 	-->
-	$0
