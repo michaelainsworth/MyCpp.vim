@@ -1,5 +1,15 @@
+snippet clog
+	std::clog << ${1:expression} << std::endl;
+snippet re
+	return ${0};
 snippet i
 	if (${1:true})
+	{
+		${0}
+	}
+
+snippet e
+	else
 	{
 		${0}
 	}
@@ -47,12 +57,12 @@ snippet fa
 		$0
 	}
 
-snippet t
+snippet tr
 	try
 	{
 		${0}
 	}
-	catch (const ${1:std::exception&} e)
+	catch (${1:const std::exception& e})
 	{
 		${2:std::cerr << e.what() << std::endl;}
 	}
@@ -121,7 +131,7 @@ snippet mfn
 	${3:void} ${1:memberFunction}(${2});
 
 snippet dmfn
-	${4:void} ${1:`expand('%:p:t:r')`}::${2:memberFunction}(${3})
+	${4:void} ${1:`expand('%:p:t:r')`}::${2:memberFunction}(${3:void})
 	{
 		${0}
 	}
@@ -171,3 +181,31 @@ snippet dox
 	//!
 	//! ${2:Detailed description here}
 
+snippet tod
+	//! \todo ${1:Brief description here}
+	//!
+	//! ${2:Longer description here}
+snippet bats
+	BOOST_AUTO_TEST_SUITE(${1:name})
+	
+	$0
+	
+	BOOST_AUTO_TEST_SUITE_END()
+snippet bfts
+	BOOST_FIXTURE_TEST_SUITE(${1:name}, ${2:fixture})
+	
+	$0
+	
+	BOOST_AUTO_TEST_SUITE_END()
+snippet batc
+	BOOST_AUTO_TEST_CASE(${1:name})
+	{
+		${0}
+	}
+
+snippet b
+	BOOST_${1:REQUIRE}(${2:expression});
+snippet bnt
+	BOOST_${1:REQUIRE}_NO_THROW(${2:expression});
+snippet bt
+	BOOST_${1:REQUIRE}_THROW(${2:expression}, ${3:std::exception});
