@@ -2,6 +2,10 @@ snippet cout "Write (std::cout)"
 std::cout << ${1:expression} << std::endl;
 endsnippet
 
+snippet cerr "Write (std::cerr)"
+std::cerr << ${1:expression} << std::endl;
+endsnippet
+
 snippet clog "Write (std::clog)"
 std::clog << ${1:expression} << std::endl;
 endsnippet
@@ -101,7 +105,7 @@ int main(int argc, const char**argv)
 endsnippet
 
 snippet o "Include Guard"
-#ifndef ${1:`toupper(substitute(expand('%:p:t'), '[^a-zA-Z0-9]', '_', 'g'))`}
+#ifndef ${1:`!v toupper(substitute(expand('%:p:t'), '[^a-zA-Z0-9]', '_', 'g'))`}
 #define $1
 
 ${0}
@@ -110,11 +114,10 @@ ${0}
 endsnippet
 
 snippet c "Class"
-//! \class $1
 //! \brief ${2:Brief class description}
 //!
 //! ${3:Detailed class description}
-class ${1:`expand('%:p:t:r')`}
+class ${1:`!v expand('%:p:t:r')`}
 {
 public:
 
@@ -124,17 +127,22 @@ public:
 endsnippet
 
 snippet cn "Declare Constructor"
-// Constructor
-${1:`expand('%:p:t:r')`}(${2});
+//! \brief ${3:Brief description}
+//!
+//! ${4:Detailed description}
+${1:`!v expand('%:p:t:r')`}(${2});
 endsnippet
 
 snippet ds "Declare Destructor"
+//! \brief ${4:Brief description}
+//!
+//! ${5:Detailed description}
 // Destructor
-${2:virtual }~${1:`expand('%:p:t:r')`}()${3};
+${2:virtual }~${1:`!v expand('%:p:t:r')`}()${3};
 endsnippet
 
 snippet dcn "Define Constructor"
-${1:`expand('%:p:t:r')`}::$1(${2}) :
+${1:`!v expand('%:p:t:r')`}::$1(${2}) :
 	${3:}
 {
 	${0}
@@ -142,7 +150,7 @@ ${1:`expand('%:p:t:r')`}::$1(${2}) :
 endsnippet
 
 snippet dds "Define Destructor"
-${1:`expand('%:p:t:r')`}::~$1()
+${1:`!v expand('%:p:t:r')`}::~$1()
 {
 	${0}
 }
@@ -152,13 +160,11 @@ snippet mfn "Declare Member Function"
 //! \brief ${4:Brief member function description}
 //! 
 //! ${5:Detailed member function description}
-//! 
-//! return ${6:Return parameter description}
 ${3:void} ${1:memberFunction}(${2});
 endsnippet
 
 snippet dmfn "Define Member Function"
-${4:void} ${1:`expand('%:p:t:r')`}::${2:memberFunction}(${3:void})
+${5:void} ${1:`!v expand('%:p:t:r')`}::${2:memberFunction}(${3:}) ${4:const}
 {
 	${0}
 }
@@ -166,7 +172,7 @@ endsnippet
 
 snippet nocp "Declare Non-Copyable Semantics"
 // Noncopyable
-${1:`expand('%:p:t:r')`}(const $1& that) = delete;
+${1:`!v expand('%:p:t:r')`}(const $1& that) = delete;
 $1($1&& that) = delete;
 $1& operator =(const $1& that) = delete;
 $1& operator =($1&& that) = delete;
@@ -174,7 +180,7 @@ endsnippet
 
 snippet cp "Declare Copyable Semantics"
 // Copyable
-${1:`expand('%:p:t:r')`}(const $1& that);
+${1:`!v expand('%:p:t:r')`}(const $1& that);
 $1($1&& that);
 $1& operator =(const $1& that);
 $1& operator =($1&& that);
@@ -182,7 +188,7 @@ $1& operator =($1&& that);
 endsnippet
 
 snippet dcp "Define Copyable Semantics"
-${1:`expand('%:p:t:r')`}::$1(const $1& that) :
+${1:`!v expand('%:p:t:r')`}::$1(const $1& that) :
 	${2:}
 {
 }
@@ -218,7 +224,6 @@ endsnippet
 snippet tod "TODO"
 //! \todo ${1:Brief description here}
 //!
-//! ${2:Longer description here}
 endsnippet
 
 snippet bats "BOOST_AUTO_TEST_SUITE"
