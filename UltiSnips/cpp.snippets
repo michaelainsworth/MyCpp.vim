@@ -137,7 +137,6 @@ snippet ds "Declare Destructor"
 //! \brief ${4:Brief description}
 //!
 //! ${5:Detailed description}
-// Destructor
 ${2:virtual }~${1:`!v expand('%:p:t:r')`}()${3};
 endsnippet
 
@@ -259,4 +258,16 @@ endsnippet
 
 snippet bt "BOOST_CHECK_THROW"
 BOOST_${1:REQUIRE}_THROW(${2:expression}, ${3:std::exception});
+endsnippet
+
+snippet cs "Comment Section"
+// ============================================================================
+// ${1:Section}
+// ============================================================================
+endsnippet
+
+snippet css "Comment Subsection"
+// ----------------------------------------------------------------------------
+// ${1:Subsection}
+// ----------------------------------------------------------------------------
 endsnippet
