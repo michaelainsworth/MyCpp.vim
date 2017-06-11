@@ -16,3 +16,24 @@ highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
 match OverLength /\%81v.*/
 
 setlocal textwidth=80
+
+function! s:CppImplementation()
+    s/^\s\+//ge
+    s/virtual //ge
+    s/ = 0;/;/ge
+    normal 0yl
+
+    if @@ ==# "~"
+        normal l
+    endif
+
+    normal yt(0Pa::$
+    normal yl
+    if @@ !=# ';'
+        normal F;
+    endif
+
+    normal C{}
+endfunction
+
+nnoremap <leader>m :call <SID>CppImplementation()<cr>O
