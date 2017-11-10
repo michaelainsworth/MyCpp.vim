@@ -72,6 +72,13 @@ for (${1:int} ${2:i} = 0; $2 < ${3:size}; ++$2)
 }
 endsnippet
 
+snippet ft "For Block (iterator)"
+for (${1:}; ${2:it != end}; ${1:++it})
+{
+	$0
+}
+endsnippet
+
 snippet fa "For Block (auto)"
 for (auto& ${1:item} : ${2:collection})
 {
@@ -105,6 +112,7 @@ int main(int argc, const char**argv)
 endsnippet
 
 snippet o "Include Guard"
+#pragma once
 #ifndef ${1:`!v toupper(substitute(expand('%:p:t'), '[^a-zA-Z0-9]', '_', 'g'))`}
 #define $1
 
