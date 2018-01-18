@@ -37,3 +37,37 @@ function! s:CppImplementation()
 endfunction
 
 nnoremap <leader>m :call <SID>CppImplementation()<cr>O
+
+function! s:CppFixFunctionLength()
+    let l:line = getline('.')
+    let l:parts = split(l:line, '(')
+
+    if len(l:parts) <= 1
+        return
+    endif
+
+    normal 0f(i
+    normal 0f(a
+
+    while 1
+        let l:line = getline('.')
+        let l:parts = split(l:line, ',')
+
+        if len(l:parts) > 1
+            normal 0f,li
+        else
+            let l:line = getline('.')
+            let l:parts = split(l:line, ')')
+
+            if len(l:parts) <= 1
+                return
+            else
+                normal 0f)i
+                return
+            endif
+        endif
+    endwhile
+endfunction
+command! CppFixFunctionLength :call <SID>CppFixFunctionLength()
+
+nmap gqgq gggqG
